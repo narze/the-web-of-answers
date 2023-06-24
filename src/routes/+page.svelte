@@ -5,11 +5,12 @@
 	const entriesCount = entriesJson.entries.length;
 
 	let longEnough = false;
+	let openDialog = false;
 	let timeout: NodeJS.Timeout;
 
 	function handleClick() {
 		if (!longEnough) {
-			alert('คุณยังคิดไม่นานพอ...');
+			openDialog = true;
 			return;
 		}
 
@@ -40,4 +41,11 @@
 	</ol>
 
 	<button on:click={handleClick}>รับคำตอบ</button>
+
+	<dialog open={openDialog}>
+		<p>คุณยังคิดไม่นานพอ...</p>
+		<form on:submit={() => (openDialog = false)}>
+			<center><button>OK</button></center>
+		</form>
+	</dialog>
 </main>
