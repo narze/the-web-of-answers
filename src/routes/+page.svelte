@@ -2,6 +2,7 @@
 	import { onDestroy, onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
 	import entriesFile from '../entries.yaml';
+	import { goto } from '$app/navigation';
 
 	const entriesCount = entriesFile.entries.length;
 
@@ -24,13 +25,13 @@
 			return;
 		}
 
+		show = false;
+	}
+
+	function redirect() {
 		const id = 1 + Math.floor(Math.random() * entriesCount);
 
-		show = false;
-
-		setTimeout(() => {
-			document.location.href = `/${id}`;
-		}, 500);
+		goto(`/${id}`);
 	}
 
 	onMount(() => {
@@ -45,7 +46,7 @@
 </script>
 
 {#if show}
-	<main out:fade>
+	<main out:fade on:outroend={redirect}>
 		<h1 class="title">เว็บนี้มีคำตอบ</h1>
 
 		<h2><code>วิธีใช้</code></h2>
