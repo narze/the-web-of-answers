@@ -1,12 +1,31 @@
 <script lang="ts">
+	import { onDestroy, onMount } from 'svelte';
 	import entriesJson from '../entries.json';
 
 	const entriesCount = entriesJson.entries.length;
 
+	let longEnough = false;
+	let timeout: NodeJS.Timeout;
+
 	function handleClick() {
+		if (!longEnough) {
+			alert('คุณยังคิดไม่นานพอ...');
+			return;
+		}
+
 		const id = 1 + Math.floor(Math.random() * entriesCount);
 		document.location.href = `/${id}`;
 	}
+
+	onMount(() => {
+		timeout = setTimeout(() => {
+			longEnough = true;
+		}, 10000);
+	});
+
+	onDestroy(() => {
+		clearTimeout(timeout);
+	});
 </script>
 
 <main>
