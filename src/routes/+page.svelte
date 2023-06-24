@@ -42,6 +42,23 @@
 
 	<button on:click={handleClick}>รับคำตอบ</button>
 
+	<div class="sub">
+		<center>
+			<small
+				>แรงบันดาลใจจาก <a
+					href="https://www.amazon.co.uk/Book-Answers-Carol-Bolt/dp/0553813544"
+					target="_blank">The Book of Answers - Carol Bolt</a
+				></small
+			>
+			<br />
+			<small
+				>Contribute on <a href="https://github.com/narze/the-web-of-answers" target="_blank"
+					>Github</a
+				></small
+			>
+		</center>
+	</div>
+
 	<dialog open={openDialog}>
 		<p>คุณยังคิดไม่นานพอ...</p>
 		<form on:submit={() => (openDialog = false)}>
