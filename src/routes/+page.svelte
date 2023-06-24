@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onDestroy, onMount } from 'svelte';
+	import { fade } from 'svelte/transition';
 	import entriesFile from '../entries.yaml';
 
 	const entriesCount = entriesFile.entries.length;
@@ -8,6 +9,7 @@
 	let openDialog = false;
 	let timeout: NodeJS.Timeout;
 	let dialog: HTMLDialogElement;
+	let show = true;
 
 	$: if (dialog) {
 		if (openDialog) {
@@ -23,13 +25,18 @@
 		}
 
 		const id = 1 + Math.floor(Math.random() * entriesCount);
-		document.location.href = `/${id}`;
+
+		show = false;
+
+		setTimeout(() => {
+			document.location.href = `/${id}`;
+		}, 500);
 	}
 
 	onMount(() => {
 		timeout = setTimeout(() => {
 			longEnough = true;
-		}, 10000);
+		}, 5000);
 	});
 
 	onDestroy(() => {
@@ -37,40 +44,42 @@
 	});
 </script>
 
-<main>
-	<h1>เว็บนี้มีคำตอบ</h1>
+{#if show}
+	<main out:fade>
+		<h1>เว็บนี้มีคำตอบ</h1>
 
-	<h2>วิธีใช้</h2>
+		<h2>วิธีใช้</h2>
 
-	<ol>
-		<li>ตั้งคำถามแบบปลายปิดในใจ เช่น วันหยุดนี้ไปเที่ยวดีไหม หรือ เย็นนี้กินกะเพราดีหรือเปล่า</li>
-		<li>รวบรวมสมาธิกับคำถาม 10-15 วินาที</li>
-		<li>คลิกที่ปุ่มเพื่อรับคำตอบ</li>
-	</ol>
+		<ol>
+			<li>ตั้งคำถามแบบปลายปิดในใจ เช่น วันหยุดนี้ไปเที่ยวดีไหม หรือ เย็นนี้กินกะเพราดีหรือเปล่า</li>
+			<li>รวบรวมสมาธิกับคำถาม 10-15 วินาที</li>
+			<li>คลิกที่ปุ่มเพื่อรับคำตอบ</li>
+		</ol>
 
-	<button on:click={handleClick}>รับคำตอบ</button>
+		<button on:click={handleClick}>รับคำตอบ</button>
 
-	<div class="sub">
-		<center>
-			<small
-				>แรงบันดาลใจจาก <a
-					href="https://www.amazon.co.uk/Book-Answers-Carol-Bolt/dp/0553813544"
-					target="_blank">The Book of Answers - Carol Bolt</a
-				></small
-			>
-			<br />
-			<small
-				>Contribute on <a href="https://github.com/narze/the-web-of-answers" target="_blank"
-					>Github</a
-				></small
-			>
-		</center>
-	</div>
+		<div class="sub">
+			<center>
+				<small
+					>แรงบันดาลใจจาก <a
+						href="https://www.amazon.co.uk/Book-Answers-Carol-Bolt/dp/0553813544"
+						target="_blank">The Book of Answers - Carol Bolt</a
+					></small
+				>
+				<br />
+				<small
+					>Contribute on <a href="https://github.com/narze/the-web-of-answers" target="_blank"
+						>Github</a
+					></small
+				>
+			</center>
+		</div>
 
-	<dialog bind:this={dialog}>
-		<p>คุณยังคิดไม่นานพอ...</p>
-		<form on:submit={() => (openDialog = false)}>
-			<center><button>OK</button></center>
-		</form>
-	</dialog>
-</main>
+		<dialog bind:this={dialog}>
+			<p>คุณยังคิดไม่นานพอ...</p>
+			<form on:submit={() => (openDialog = false)}>
+				<center><button>OK</button></center>
+			</form>
+		</dialog>
+	</main>
+{/if}
