@@ -4,4 +4,4 @@
 
 ## Contribution
 
-เพิ่มคำตอบในไฟล์ [src/entries.json](./src/entries.json)
+เพิ่มคำตอบในไฟล์ [src/entries.yaml](./src/entries.yaml)

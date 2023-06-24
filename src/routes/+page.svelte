@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { onDestroy, onMount } from 'svelte';
-	import entriesJson from '../entries.json';
+	import entriesFile from '../entries.yaml';
 
-	const entriesCount = entriesJson.entries.length;
+	const entriesCount = entriesFile.entries.length;
 
 	let longEnough = false;
 	let openDialog = false;
