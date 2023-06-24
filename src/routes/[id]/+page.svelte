@@ -9,7 +9,7 @@
 </script>
 
 <main>
-	<h1>{data.entry.content}</h1>
+	<h1 class="answer">{data.entry.content}</h1>
 
 	<button on:click={back}>กลับหน้าแรก</button>
 </main>
