@@ -1,4 +1,4 @@
-import type { PageLoad } from './$types';
+import type { EntryGenerator, PageLoad } from './$types';
 import entriesJson from '../../entries.json';
 import { error } from '@sveltejs/kit';
 export const prerender = true;
@@ -20,3 +20,7 @@ export const load = (({ params }) => {
 		},
 	};
 }) satisfies PageLoad;
+
+export const entries = (() => {
+	return entriesJson.entries.map((_, idx) => ({ id: String(idx + 1) }));
+}) satisfies EntryGenerator;
