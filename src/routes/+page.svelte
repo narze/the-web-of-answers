@@ -7,7 +7,15 @@
 	let longEnough = false;
 	let openDialog = false;
 	let timeout: NodeJS.Timeout;
+	let dialog: HTMLDialogElement;
 
+	$: if (dialog) {
+		if (openDialog) {
+			dialog.showModal();
+		} else {
+			dialog.close();
+		}
+	}
 	function handleClick() {
 		if (!longEnough) {
 			openDialog = true;
@@ -59,7 +67,7 @@
 		</center>
 	</div>
 
-	<dialog open={openDialog}>
+	<dialog bind:this={dialog}>
 		<p>คุณยังคิดไม่นานพอ...</p>
 		<form on:submit={() => (openDialog = false)}>
 			<center><button>OK</button></center>
