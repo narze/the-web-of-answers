@@ -8,6 +8,8 @@
 	}
 </script>
 
-<h1>{data.entry.content}</h1>
+<main>
+	<h1>{data.entry.content}</h1>
 
-<button on:click={back}>กลับหน้าแรก</button>
+	<button on:click={back}>กลับหน้าแรก</button>
+</main>
