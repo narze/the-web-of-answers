@@ -2,9 +2,6 @@
 
 เว็บนี้มีคำตอบ
 
-<!-- Answers are here
-- Hello world
-- HAI
-- TEST
-- Kthxbye
--->
+## Contribution
+
+เพิ่มคำตอบในไฟล์ [src/entries.json](./src/entries.json)
