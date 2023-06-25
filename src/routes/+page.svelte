@@ -68,11 +68,10 @@
 					></small
 				>
 				<br />
-				<small
-					>Contribute on <a href="https://github.com/narze/the-web-of-answers" target="_blank"
-						>Github</a
-					></small
-				>
+				<small>
+					<a href="/api" target="_blank">API</a> | Contribute on
+					<a href="https://github.com/narze/the-web-of-answers" target="_blank">Github</a>
+				</small>
 			</center>
 		</div>
 
