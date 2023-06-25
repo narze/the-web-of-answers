@@ -37,7 +37,7 @@
 	onMount(() => {
 		timeout = setTimeout(() => {
 			longEnough = true;
-		}, 5000);
+		}, 10000);
 	});
 
 	onDestroy(() => {
